@@ -9,13 +9,32 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    //MVVM
+    
+    //Model
+    // - BountyInfo
+    // > BountyInfo 만들자
+    
+    //View
+    // - imgView, nameLabel, bountyLabel
+    // > view들은 viewModel을 통해서 구성되기?
+    // > ListCell은 ViewModel로 부터 받은 정보로 뷰 업데이트하기
+    
+    //ViewModel
+    // - DetailViewModel
+    // > 뷰레이어에서 필요한 메서드 만들기
+    // > 모델 가지고 있기. BountyInfo들
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bountyLabel: UILabel!
     
-    var name: String?
-    var bounty: Int?
+//    var name: String?
+//    var bounty: Int?
+    
+//    var bountyInfo: BountyInfo?
+    let viewModel = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +44,24 @@ class DetailViewController: UIViewController {
     
     func updateUI(){
         
-        if let name = self.name, let bounty = self.bounty {
-            let img = UIImage(named: "\(name).jpg")
-            imgView.image = img
-            nameLabel.text = name
-            bountyLabel.text = "\(bounty)"
+        if let bountyInfo = self.viewModel.bountyInfo {
+            imgView.image = bountyInfo.image
+            nameLabel.text = bountyInfo.name
+            bountyLabel.text = "\(bountyInfo.bounty)"
         }
+        
+//        if let bountyInfo = self.bountyInfo {
+//            imgView.image = bountyInfo.image
+//            nameLabel.text = bountyInfo.name
+//            bountyLabel.text = "\(bountyInfo.bounty)"
+//        }
+        
+//        if let name = self.name, let bounty = self.bounty {
+//            let img = UIImage(named: "\(name).jpg")
+//            imgView.image = img
+//            nameLabel.text = name
+//            bountyLabel.text = "\(bounty)"
+//        }
         
     }
     
@@ -39,4 +70,12 @@ class DetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+class DetailViewModel {
+    var bountyInfo: BountyInfo?
+ 
+    func update(model: BountyInfo?) {
+        bountyInfo = model
+    }
 }
