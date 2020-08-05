@@ -8,10 +8,9 @@
 
 import UIKit
 
-class BountyViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+class BountyViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     //MVVM
-    
     //Model
     // - BountyInfo
     // > BountyInfo 만들자
@@ -26,23 +25,7 @@ class BountyViewController: UIViewController , UITableViewDataSource, UITableVie
     // > BountyViewModel을 만들고, 뷰레이어에서 필요한 메서드 만들기
     // > 모델 가지고 있기. BountyInfo들
     
-
-// View에서는 Model 직접 접근 안함. ViewModel을 통해서함
-//    let bountyInfoList: [BountyInfo] = [
-//        BountyInfo(name: "brook", bounty: 33000000),
-//        BountyInfo(name: "chopper", bounty: 50),
-//        BountyInfo(name: "franky", bounty: 44000000),
-//        BountyInfo(name: "luffy", bounty: 300000000),
-//        BountyInfo(name: "nami", bounty: 16000000),
-//        BountyInfo(name: "robin", bounty: 80000000),
-//        BountyInfo(name: "sanji", bounty: 77000000),
-//        BountyInfo(name: "zoro", bounty: 120000000)
-//    ]
-    
     let viewModel = BountyViewModel()
-
-//    let nameList = ["brook", "chopper", "franky", "luffy", "nami", "robin", "sanji", "zoro"]
-//    let bountyList = [33000000, 50, 44000000, 300000000, 16000000, 80000000, 77000000, 120000000]
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //세그웨이 수행하기 직전 준비할 때, 데이터를 넘겨주자
@@ -50,15 +33,8 @@ class BountyViewController: UIViewController , UITableViewDataSource, UITableVie
         if segue.identifier == "showDetail" {
             let vc = segue.destination as? DetailViewController
             if let index = sender as? Int {
-//                let bountyInfo = bountyInfoList[index]
-                let bountyInfo = viewModel.bountyInfo(at: index)                
-//                vc?.name = nameList[index]
-//                vc?.bounty = bountyList[index]
-
+                let bountyInfo = viewModel.bountyInfo(at: index)
                 vc?.viewModel.update(model: bountyInfo)
-//               vc?.bountyInfo = bountyInfo
-//                vc?.name = bountyInfo.name
-//                vc?.bounty = bountyInfo.bounty
             }
         }
     }
@@ -66,62 +42,42 @@ class BountyViewController: UIViewController , UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-        
-    //UITableViewDataSource
-    //테이블뷰 셀 몇개니?
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return bountyList.count
-//        return bountyInfoList.count
+    
+    //UICollectionViewDataSource
+    //몇개를 보여줄까요?
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numOfBountyInfoList
     }
-    //테이블뷰 셀 어떻게 보여줄꺼니?
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListCell else{
-//            return UITableViewCell()
-//        }
-//        return cell
-
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListCell {
-//            let img = UIImage(named: "\(nameList[indexPath.row])")
-//            cell.imgView.image = img
-//            cell.nameLabel.text = nameList[indexPath.row]
-//            cell.bountyLabel.text = "\(bountyList[indexPath.row])"
-            
-//            let bountyInfo = bountyInfoList[indexPath.row]
-            let bountyInfo = viewModel.bountyInfo(at: indexPath.row)
-            cell.update(info: bountyInfo)
-//            cell.imgView.image = bountyInfo.image
-//            cell.nameLabel.text = bountyInfo.name
-//            cell.bountyLabel.text = "\(bountyInfo.bounty)"
-            
-            return cell
-        } else {
-            return UITableViewCell()
+    //셀은 어떻게 표현할까요?
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCell", for: indexPath) as? GridCell else {
+            return UICollectionViewCell()
         }
-        
-        
-    }
-    
-    
-    //UITableViewDelegate
-    //셀 클릭하면 이떻게 할꺼야?
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("--> \(indexPath.row)")
-        
-        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
-    }
-}
 
-//customcell
-class ListCell: UITableViewCell {
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var bountyLabel: UILabel!
+        let bountyInfo = viewModel.bountyInfo(at: indexPath.item)
+        cell.update(info: bountyInfo)
+
+        return cell
+    }
     
-    func update(info: BountyInfo) {
-        imgView.image = info.image
-        nameLabel.text = info.name
-        bountyLabel.text = "\(info.bounty)"
+    //UICollectionViewDelegate
+    //셀이 클릭되었을때, 어떻게 할까요?
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("--> \(indexPath.item)")
+        performSegue(withIdentifier: "showDetail", sender: indexPath.item)
+    }
+    
+    //UICollectionViewDelegateFlowLayout
+    //cell size를 계산할거다. (목표 : 다양한 디바이스에서 일관적인 디자인을 보여주기 위해)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let itemSpacing: CGFloat = 10
+        let textAreaHeight: CGFloat = 65
+        
+        let width: CGFloat = (collectionView.bounds.width - itemSpacing)/2
+        let height: CGFloat = width * 10/7 + textAreaHeight
+        
+        return CGSize(width: width, height: height)
     }
 }
 
@@ -151,5 +107,17 @@ class BountyViewModel {
     
     func bountyInfo(at index: Int) -> BountyInfo {
         return sortedList[index]
+    }
+}
+
+class GridCell: UICollectionViewCell {
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bountyLabel: UILabel!
+    
+    func update(info: BountyInfo) {
+        imgView.image = info.image
+        nameLabel.text = info.name
+        bountyLabel.text = "\(info.bounty)"
     }
 }
