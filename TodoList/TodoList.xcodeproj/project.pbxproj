@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D3083EAA25791997002168E3 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3083EA925791997002168E3 /* Todo.swift */; };
+		D3083EAC257919BC002168E3 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3083EAB257919BC002168E3 /* Storage.swift */; };
 		D3B8541B256D3F3E001863D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B8541A256D3F3E001863D6 /* AppDelegate.swift */; };
 		D3B8541D256D3F3E001863D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B8541C256D3F3E001863D6 /* SceneDelegate.swift */; };
 		D3B85422256D3F3E001863D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B85420256D3F3E001863D6 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D3083EA925791997002168E3 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		D3083EAB257919BC002168E3 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		D3B85417256D3F3E001863D6 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B8541A256D3F3E001863D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B8541C256D3F3E001863D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				D3B8541A256D3F3E001863D6 /* AppDelegate.swift */,
 				D3B8541C256D3F3E001863D6 /* SceneDelegate.swift */,
 				D3B8542E256D4034001863D6 /* TodoListViewController.swift */,
+				D3083EA925791997002168E3 /* Todo.swift */,
+				D3083EAB257919BC002168E3 /* Storage.swift */,
 				D3B85420256D3F3E001863D6 /* Main.storyboard */,
 				D3B85423256D3F40001863D6 /* Assets.xcassets */,
 				D3B85425256D3F40001863D6 /* LaunchScreen.storyboard */,
@@ -141,6 +147,8 @@
 				D3B8542F256D4034001863D6 /* TodoListViewController.swift in Sources */,
 				D3B8541B256D3F3E001863D6 /* AppDelegate.swift in Sources */,
 				D3B8541D256D3F3E001863D6 /* SceneDelegate.swift in Sources */,
+				D3083EAA25791997002168E3 /* Todo.swift in Sources */,
+				D3083EAC257919BC002168E3 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
