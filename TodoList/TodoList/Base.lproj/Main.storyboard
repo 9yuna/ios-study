@@ -123,20 +123,79 @@
                                     <outlet property="delegate" destination="NlZ-eL-7o8" id="dfH-yJ-xXH"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nl7-ho-I3b">
+                                <rect key="frame" x="0.0" y="753" width="414" height="60"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="I want to..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xM1-2L-9RF">
+                                        <rect key="frame" x="8" y="13" width="290" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHK-wX-vIZ">
+                                        <rect key="frame" x="363" y="12.5" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="c6h-FD-KDw"/>
+                                            <constraint firstAttribute="height" constant="35" id="vJx-Dt-25w"/>
+                                        </constraints>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" image="plus" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" weight="semibold"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addTaskButtonTapped:" destination="NlZ-eL-7o8" eventType="touchUpInside" id="yK2-tu-Qzz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqP-eK-a3s">
+                                        <rect key="frame" x="308" y="12.5" width="45" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="XUm-AE-Xyc"/>
+                                            <constraint firstAttribute="height" constant="35" id="yxe-Qk-oz9"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="today">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="isTodayButtonTapped:" destination="NlZ-eL-7o8" eventType="touchUpInside" id="4Ml-Hd-fBG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="xM1-2L-9RF" firstAttribute="centerY" secondItem="Nl7-ho-I3b" secondAttribute="centerY" id="0TX-r1-hvG"/>
+                                    <constraint firstItem="bHK-wX-vIZ" firstAttribute="centerY" secondItem="Nl7-ho-I3b" secondAttribute="centerY" id="7qq-L7-Evl"/>
+                                    <constraint firstAttribute="trailing" secondItem="bHK-wX-vIZ" secondAttribute="trailing" constant="16" id="HAf-gB-57T"/>
+                                    <constraint firstItem="bHK-wX-vIZ" firstAttribute="leading" secondItem="EqP-eK-a3s" secondAttribute="trailing" constant="10" id="Tre-wP-sEa"/>
+                                    <constraint firstItem="xM1-2L-9RF" firstAttribute="leading" secondItem="Nl7-ho-I3b" secondAttribute="leading" constant="8" id="W0w-cL-9Sr"/>
+                                    <constraint firstItem="EqP-eK-a3s" firstAttribute="leading" secondItem="xM1-2L-9RF" secondAttribute="trailing" constant="10" id="Xhs-XI-6ri"/>
+                                    <constraint firstItem="EqP-eK-a3s" firstAttribute="centerY" secondItem="bHK-wX-vIZ" secondAttribute="centerY" id="lEf-Ds-3pb"/>
+                                    <constraint firstAttribute="height" constant="60" id="xp4-V4-akf"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="qab-i9-4Hg" firstAttribute="top" secondItem="tq9-Su-X5X" secondAttribute="top" id="7WL-uG-4kq"/>
                             <constraint firstItem="tq9-Su-X5X" firstAttribute="trailing" secondItem="qab-i9-4Hg" secondAttribute="trailing" id="P8W-bi-dBP"/>
+                            <constraint firstItem="tq9-Su-X5X" firstAttribute="bottom" secondItem="Nl7-ho-I3b" secondAttribute="bottom" id="RwB-Hy-wSh"/>
+                            <constraint firstItem="Nl7-ho-I3b" firstAttribute="leading" secondItem="tq9-Su-X5X" secondAttribute="leading" id="SfD-tF-9VV"/>
                             <constraint firstItem="tq9-Su-X5X" firstAttribute="bottom" secondItem="qab-i9-4Hg" secondAttribute="bottom" id="faR-ps-6vc"/>
                             <constraint firstItem="qab-i9-4Hg" firstAttribute="leading" secondItem="tq9-Su-X5X" secondAttribute="leading" id="gj8-2S-S3q"/>
+                            <constraint firstItem="tq9-Su-X5X" firstAttribute="trailing" secondItem="Nl7-ho-I3b" secondAttribute="trailing" id="p7Q-VN-bnY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tq9-Su-X5X"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Tasks" image="checkmark.circle.fill" catalog="system" id="Vhv-Tq-IlD"/>
                     <connections>
+                        <outlet property="addButton" destination="bHK-wX-vIZ" id="636-os-eGN"/>
                         <outlet property="collectionView" destination="qab-i9-4Hg" id="aFe-UL-JsA"/>
+                        <outlet property="inputTextField" destination="xM1-2L-9RF" id="eQq-Ve-CgA"/>
+                        <outlet property="inputViewBottom" destination="RwB-Hy-wSh" id="rB5-wH-OXm"/>
+                        <outlet property="isTodayButton" destination="EqP-eK-a3s" id="ggi-ML-tSM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6P-Cx-UJr" sceneMemberID="firstResponder"/>
@@ -244,6 +303,7 @@
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
