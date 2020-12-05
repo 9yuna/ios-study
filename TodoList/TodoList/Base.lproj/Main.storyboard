@@ -92,8 +92,8 @@
                                         <size key="customSize" width="414" height="90"/>
                                         <connections>
                                             <outlet property="checkButton" destination="D1w-Rc-UX4" id="hBL-vF-2s0"/>
-                                            <outlet property="deleteButton" destination="xCl-Mi-pjP" id="Gaj-g3-pbf"/>
-                                            <outlet property="descriptionLabel" destination="tZM-Sq-A2b" id="0Xo-3c-ghi"/>
+                                            <outlet property="deleteButton" destination="xCl-Mi-pjP" id="ck6-oT-g83"/>
+                                            <outlet property="descriptionLabel" destination="tZM-Sq-A2b" id="3fl-pa-clR"/>
                                             <outlet property="strikeThroughView" destination="Z9R-ZR-QgN" id="kv0-dM-RSk"/>
                                             <outlet property="strikeThroughWidth" destination="jf2-Sy-5rf" id="YjY-hd-BuV"/>
                                         </connections>
@@ -188,6 +188,9 @@
                             <constraint firstItem="tq9-Su-X5X" firstAttribute="trailing" secondItem="Nl7-ho-I3b" secondAttribute="trailing" id="p7Q-VN-bnY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tq9-Su-X5X"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jCq-Et-IDu" appends="YES" id="yp8-65-D4T"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Tasks" image="checkmark.circle.fill" catalog="system" id="Vhv-Tq-IlD"/>
                     <connections>
@@ -199,6 +202,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6P-Cx-UJr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jCq-Et-IDu">
+                    <connections>
+                        <action selector="tapBG:" destination="NlZ-eL-7o8" id="wBG-CA-KuS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-297" y="1697"/>
         </scene>
