@@ -23,9 +23,23 @@ class TodoListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        //키보드 디텍션
+        
+        //데이터 불러오기
+        todoListViewModel.loadTasks()
+        
+        let todo = TodoManager.shared.createTodo(detail: "👍 🚀 Corona 난리", isToday: true)
+        Storage.saveTodo(todo, fileName: "test.json")
     }
 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let todo = Storage.restoreTodo("test.json")
+        print("---> restore from disk: \(todo)")
+    }
 
 }
 
