@@ -17,6 +17,10 @@ class TodoListViewController: UIViewController {
     @IBOutlet weak var isTodayButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
+    //TodoViewModel 만들기
+    let todoListViewModel = TodoViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -35,23 +39,36 @@ extension TodoListViewController {
 
 extension TodoListViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // TODO: 섹션 몇개
-        return 2
+        //섹션 몇개
+        return todoListViewModel.numOfSection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: 섹션별 아이템 몇개
-        return 5
+        //섹션별 아이템 몇개
+        if section == 0 {
+            return todoListViewModel.todayTodos.count
+        } else {
+            return todoListViewModel.upcompingTodos.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // TODO: 커스텀 셀
+        //커스텀 셀
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodoListCell", for: indexPath) as? TodoListCell else {
             return UICollectionViewCell()
         }
         return cell
         
-        // TODO: todo 를 이용해서 updateUI
+        //todo 를 이용해서 updateUI
+        var todo: Todo
+        if indexPath.section == 0 {
+            todo = todoListViewModel.todayTodos[indexPath.item]
+        } else {
+            todo = todoListViewModel.upcompingTodos[indexPath.item]
+        }
+        cell.updateUI(todo: todo)
+        
+        
         // TODO: doneButtonHandler 작성
         // TODO: deleteButtonHandler 작성
         //return cell
